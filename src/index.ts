@@ -405,7 +405,10 @@ function codeAssessment(review: Review): CodeAssessment | null {
     (typeof review.base_commit_sha === "string" &&
       review.base_commit_sha.toLowerCase() !==
         code.base_commit_sha.toLowerCase()) ||
-    code.findings.some((finding) => finding.risk_domain === WITHHELD_MARKER)
+    code.findings.some(
+      (finding) =>
+        !isObject(finding) || finding.risk_domain === WITHHELD_MARKER,
+    )
   )
     return null;
   return code;

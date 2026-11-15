@@ -1136,6 +1136,9 @@ test("absent or unusable CODE-only results never complete", async (t) => {
     codeAssessment("FUTURE_STATE"),
     { ...codeAssessment(), id: 42 },
     { ...codeAssessment(), findings: null },
+    { ...codeAssessment(), findings: [false] },
+    { ...codeAssessment(), findings: [null] },
+    { ...codeAssessment(), findings: [[]] },
     { ...codeAssessment(), incompleteness_kind: 42 },
   ]) {
     body = { ...review("COMPLETED", []), code_assessment: code };
